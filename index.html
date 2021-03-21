@@ -75,7 +75,7 @@
 	 <p>There is an image with a class of FLEXIBLE which is set to a max-width equal to the size of the image.  Simutaneously the class sets the image to a percentage width, allowing the image to flex in size.  The height is not changed, as this would skew the image.</p>
 	 <p>The LIST elements inside the NAV are displayed inline by setting the display to be inline-block.  Bullets are removed by setting the UL to display</p>
 	 <p>The FOOTER includes a clear:both to keep everything above it!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Picture of Me!" class="flexible" />
+	  <img src="images/afternoon.jpg" alt="time of day pic" id="mypic" class="flexible" />
      </main>
     <footer>
       <small>&copy; 2013, All Rights Reserved ~
@@ -85,28 +85,76 @@
     </footer>
 	<!-- END Footer -->
 	<script>
-let myDate = new Date();
-let myHour = myDate.getHours();
-let myGreeting = "";
-let myColor = "";
-
-//TESTONLY - REMOVE THIS
-	myHour = 9;
-
-	if(myHour >= 5 && myHour <12){
-		myGreeting = "Good Morning?";
-   		myColor= "Yellow";
-	}else{
-		alert('NOT morning');
-	}
-
-
-
-
-
-
-document.getElementById('mydiv').innerHTML = myGreeting;
-document.body.style.backgroundColor = myColor;
-	</script>
+		let myDate = new Date();
+		let myHour = myDate.getHours();
+		let myGreeting = "";
+		let myColor = "";
+		let myPic = "images/";
+		let day = "";
+		
+		switch (myDate.getDay()) {
+		  case 0:
+			day = "Sunday";
+			break;
+		  case 1:
+			day = "Monday";
+			break;
+		  case 2:
+			day = "Tuesday";
+			break;
+		  case 3:
+			day = "Wednesday";
+			break;
+		  case 4:
+			day = "Thursday";
+			break;
+		  case 5:
+			day = "Friday";
+			break;
+		  default:
+			day = "Saturday";
+		}
+  
+		if (myHour > 4 && myHour < 12) {
+		  myGreeting =
+			"Good Morning!" +
+			" Today is " +
+			'<span class="day">' +
+			day +
+			"</span>!";
+		  myColor = "orange";
+		  myPic += "morning.jpg";
+		} else if (myHour > 11 && myHour < 18) {
+		  myGreeting =
+			"Good Afternoon!" +
+			" Today is " +
+			'<span class="day">' +
+			day +
+			"</span>!";
+		  myColor = "green";
+		  myPic += "afternoon.jpg";
+		} else if (myHour > 17 && myHour < 23) {
+		  myGreeting =
+			"Good Evening!" +
+			" Today is " +
+			'<span class="day">' +
+			day +
+			"</span>!";
+		  myColor = "yellow";
+		  myPic += "evening.jpg";
+		} else {
+		  myGreeting =
+			"Good Night!" +
+			" Today is " +
+			'<span class="day">' +
+			day +
+			"</span>!";
+		  myColor = "purple";
+		  myPic += "night.jpg";
+		}
+		document.getElementById("mypic").src = myPic;
+		document.getElementById("mydiv").innerHTML = myGreeting;
+		document.body.style.backgroundColor = myColor;
+	  </script>
 </body>
 </html>
